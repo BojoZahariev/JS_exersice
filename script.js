@@ -1,3 +1,8 @@
+var text = document.getElementById("text");
+text.textContent
+
+
+
 function book(title, author, pages, read) {
     this.title = title;
     this.autor = author;
@@ -9,4 +14,4 @@ function book(title, author, pages, read) {
 }
 
 const book1 = new book("Vinetou", "Karl May", "450", "read it twice");
-console.log(book1.info());
+text.textContent = (book1.info());
