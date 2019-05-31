@@ -115,3 +115,39 @@ console.log(speedy.stomach); // apple
 
 // Lazy one's stomach is empty
 console.log(lazy.stomach); // <nothing>
+
+
+
+
+function Student() {}
+
+Student.prototype.sayName = function () {
+    console.log(this.name)
+}
+
+function EighthGrader(name) {
+    this.name = name
+    this.grade = 8
+}
+
+EighthGrader.prototype = Object.create(Student.prototype)
+
+const carl = new EighthGrader("carl")
+carl.sayName() // console.logs "carl"
+carl.grade // 8
+
+
+const person = {
+    isHuman: false,
+    printIntroduction: function () {
+        console.log(`My name is ${this.name}. Am I human? ${this.isHuman}`);
+    }
+};
+
+const me = Object.create(person);
+
+me.name = "Matthew"; // "name" is a property set on "me", but not on "person"
+me.isHuman = true; // inherited properties can be overwritten
+
+me.printIntroduction();
+// expected output: "My name is Matthew. Am I human? true"
