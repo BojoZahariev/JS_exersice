@@ -1,5 +1,5 @@
 var text = document.getElementById("text");
-text.textContent
+
 
 
 //Prototype Attribute of Objects Created With a Constructor Function
