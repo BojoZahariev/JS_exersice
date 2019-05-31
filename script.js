@@ -60,3 +60,58 @@ console.log(aBanana.name); // Banana
 
 // Uses the showNameAndColor method from the Fruit object prototype, which is Plant.prototype. The aBanana object inherits all the properties and methods from both the Plant and Fruit functions.
 console.log(aBanana.showNameAndColor()); // I am a Banana and my color is yellow.
+
+
+
+//Inheritance
+let head = {
+    glasses: 1
+};
+
+let table = {
+    pen: 3,
+    __proto__: head
+};
+
+let bed = {
+    sheet: 1,
+    pillow: 2,
+    __proto__: table
+};
+
+let pockets = {
+    money: 2000,
+    __proto__: bed
+};
+
+console.log(pockets.pen); // 3
+console.log(bed.glasses); // 1
+console.log(table.money); // undefined
+
+
+
+
+let hamster = {
+    stomach: [],
+
+    eat(food) {
+        this.stomach.push(food);
+    }
+};
+
+let speedy = {
+    __proto__: hamster,
+    stomach: []
+};
+
+let lazy = {
+    __proto__: hamster,
+    stomach: []
+};
+
+// Speedy one found the food
+speedy.eat("apple");
+console.log(speedy.stomach); // apple
+
+// Lazy one's stomach is empty
+console.log(lazy.stomach); // <nothing>
