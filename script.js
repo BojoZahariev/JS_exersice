@@ -189,3 +189,32 @@ var helloTodd = sayHello('Todd');
 helloTodd(); // will call the closure and log 'Hello, Todd'
 
 sayHello('Bob')(); // calls the returned function without assignment
+
+//Scope and ‘this’
+var myFunction = function() {
+	console.log(this); // this = global, [object Window]
+};
+myFunction();
+
+var myObject = {};
+myObject.myMethod = function() {
+	console.log(this); // this = Object { myObject }
+};
+
+var nav = document.querySelector('.nav'); // <nav class="nav">
+var toggleNav = function() {
+	console.log(this); // this = <nav> element
+};
+nav.addEventListener('click', toggleNav, false);
+
+//This and that
+var nav = document.querySelector('.nav'); // <nav class="nav">
+var toggleNav = function() {
+	var that = this;
+	console.log(that); // <nav> element
+	setTimeout(function() {
+		console.log(that); // <nav> element
+	}, 1000);
+};
+nav.addEventListener('click', toggleNav, false);
+
