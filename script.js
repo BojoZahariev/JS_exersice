@@ -173,3 +173,19 @@ var scope1 = function () {
     };
   };
 };
+
+//Closure
+
+var sayHello = function(name) {
+	var text = 'Hello, ' + name;
+	return function() {
+		console.log(text);
+	};
+};
+
+sayHello('Todd'); // nothing happens, no errors, just silence...
+
+var helloTodd = sayHello('Todd');
+helloTodd(); // will call the closure and log 'Hello, Todd'
+
+sayHello('Bob')(); // calls the returned function without assignment
