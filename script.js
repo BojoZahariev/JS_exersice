@@ -162,3 +162,14 @@ const Person = function(name, age) {
 };
 
 const jeff = new Person('jeff', 27);
+
+// name = undefined
+var scope1 = function () {
+  // name = undefined
+  var scope2 = function () {
+    // name = undefined
+    var scope3 = function () {
+      var name = 'Todd'; // locally scoped
+    };
+  };
+};
