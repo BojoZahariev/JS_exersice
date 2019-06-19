@@ -241,5 +241,62 @@ nav.addEventListener(
 	false
 );
 
-nav.addEventListener('click', toggleNav.bind(scope, arg1, arg2), false);
+//nav.addEventListener('click', toggleNav.bind(scope, arg1, arg2), false);
+
+//Private and Public Scope
+
+(function() {
+	var myFunction = function() {
+		// do some stuff here
+	};
+})();
+
+myFunction(); // Uncaught ReferenceError: myFunction is not defined
+
+// define module
+var Module = (function() {
+	return {
+		myMethod: function() {
+			console.log('myMethod has been called.');
+		}
+	};
+})();
+
+// call module + methods
+Module.myMethod();
+
+// define module
+var Module = (function() {
+	return {
+		myMethod: function() {},
+		someOtherMethod: function() {}
+	};
+})();
+
+// call module + methods
+Module.myMethod();
+Module.someOtherMethod();
+
+var Module = (function() {
+	var privateMethod = function() {};
+	return {
+		publicMethod: function() {
+			// has access to `privateMethod`, we can call it:
+			// privateMethod();
+		}
+	};
+})();
+
+//an example of returning an Object, making use of public and private methods:
+var Module = (function() {
+	var myModule = {};
+	var privateMethod = function() {};
+	myModule.publicMethod = function() {};
+	myModule.anotherPublicMethod = function() {};
+	return myModule; // returns the Object with public methods
+})();
+
+// usage
+Module.publicMethod();
+
 
