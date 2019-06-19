@@ -218,3 +218,28 @@ var toggleNav = function() {
 };
 nav.addEventListener('click', toggleNav, false);
 
+
+//Changing scope with .call(), .apply() and .bind()
+
+var links = document.querySelectorAll('nav li');
+for (var i = 0; i < links.length; i++) {
+	console.log(this); // [object Window]
+}
+
+var links = document.querySelectorAll('nav li');
+for (var i = 0; i < links.length; i++) {
+	(function() {
+		console.log(this);
+	}.call(links[i]));
+}
+
+nav.addEventListener(
+	'click',
+	function() {
+		toggleNav(arg1, arg2);
+	},
+	false
+);
+
+nav.addEventListener('click', toggleNav.bind(scope, arg1, arg2), false);
+
