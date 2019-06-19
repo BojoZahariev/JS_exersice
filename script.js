@@ -299,4 +299,34 @@ var Module = (function() {
 // usage
 Module.publicMethod();
 
+//Private Variables and Functions
+const FactoryFunction = (string) => {
+	const capitalizeString = () => string.toUpperCase(); //private function
+	const printString = () => console.log(`----${capitalizeString()}----`); //public function
+	return { printString };
+};
+
+const taco = FactoryFunction('taco');
+
+//printString(); // ERROR!!
+//capitalizeString(); // ERROR!!
+//taco.capitalizeString(); // ERROR!!
+taco.printString(); // this prints "----TACO----"
+
+//The big deal here is that even though we can’t access the capitalizeString() function, printString() can. That is closure.
+
+const counterCreator = () => {
+	let count = 0;
+	return () => {
+		console.log(count);
+		count++;
+	};
+};
+
+const counter = counterCreator();
+
+counter(); // 0
+counter(); // 1
+counter(); // 2
+counter(); // 3
 
