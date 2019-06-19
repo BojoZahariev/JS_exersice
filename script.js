@@ -382,3 +382,35 @@ const jess = Nerd('jess');
 jess.sayName(); //my name is jess
 jess.doSomethingNerdy(); // nerd stuff
 
+
+//factory
+const proto = {
+	hello() {
+		return `Hello, my name is ${this.name}`;
+	}
+};
+
+const greeter = (name) =>
+	Object.assign(Object.create(proto), {
+		name
+	});
+
+const george = greeter('george');
+
+const msg = george.hello();
+
+console.log(msg);
+
+//The Module Pattern
+const calculator = (() => {
+	const add = (a, b) => a + b;
+	const sub = (a, b) => a - b;
+	const mul = (a, b) => a * b;
+	const div = (a, b) => a / b;
+	return {
+		add,
+		sub,
+		mul,
+		div
+	};
+})();
