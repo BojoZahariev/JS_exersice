@@ -155,6 +155,7 @@ console.log(jeff.name); // 'jeff'
 jeff.sayHello(); // calls the function and logs 'hello!'
 
 //for reference, here is the same thing created using the Constructor pattern:
+/*
 const Person = function(name, age) {
 	this.sayHello = () => console.log('hello!');
 	this.name = name;
@@ -162,16 +163,17 @@ const Person = function(name, age) {
 };
 
 const jeff = new Person('jeff', 27);
+*/
 
 // name = undefined
-var scope1 = function () {
-  // name = undefined
-  var scope2 = function () {
-    // name = undefined
-    var scope3 = function () {
-      var name = 'Todd'; // locally scoped
-    };
-  };
+var scope1 = function() {
+	// name = undefined
+	var scope2 = function() {
+		// name = undefined
+		var scope3 = function() {
+			var name = 'Todd'; // locally scoped
+		};
+	};
 };
 
 //Closure
@@ -217,7 +219,6 @@ var toggleNav = function() {
 	}, 1000);
 };
 nav.addEventListener('click', toggleNav, false);
-
 
 //Changing scope with .call(), .apply() and .bind()
 
@@ -330,7 +331,6 @@ counter(); // 1
 counter(); // 2
 counter(); // 3
 
-
 //Back to Factory Functions
 
 const Player = (name, level) => {
@@ -382,7 +382,6 @@ const jess = Nerd('jess');
 jess.sayName(); //my name is jess
 jess.doSomethingNerdy(); // nerd stuff
 
-
 //factory
 const proto = {
 	hello() {
@@ -414,3 +413,85 @@ const calculator = (() => {
 		div
 	};
 })();
+
+//The concept is simple.. write a function, wrap it in parentheses and then immediately call the function by adding () to the end of it.
+
+calculator.add(3, 5); // 8
+calculator.sub(6, 2); // 4
+calculator.mul(14, 5534); // 77476
+
+//Classes
+
+class User {
+	constructor(name) {
+		this.name = name;
+	}
+
+	sayHi() {
+		console.log(this.name);
+	}
+}
+
+let user = new User('John');
+user.sayHi();
+
+//Class Expression
+
+let User = class {
+	sayHi() {
+		alert('Hello');
+	}
+};
+
+//Getters/setters, other shorthands
+
+class User {
+	constructor(name) {
+		// invokes the setter
+		this.name = name;
+	}
+
+	get name() {
+		return this._name;
+	}
+
+	set name(value) {
+		if (value.length < 4) {
+			alert('Name is too short.');
+			return;
+		}
+		this._name = value;
+	}
+}
+
+let user = new User('John');
+alert(user.name); // John
+
+user = new User(''); // Name too short.
+
+class User {
+	name = 'Anonymous';
+
+	sayHi() {
+		alert(`Hello, ${this.name}!`);
+	}
+}
+
+new User().sayHi();
+
+
+class MyClass {
+	prop = value; // field
+  
+	constructor(...) { // constructor
+	  // ...
+	}
+  
+	method(...) {} // method
+  
+	get something(...) {} // getter method
+	set something(...) {} // setter method
+  
+	[Symbol.iterator]() {} // method with computed name/symbol name
+	// ...
+  }
