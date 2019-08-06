@@ -537,3 +537,33 @@ class MyClass {
   
   let clock = new Clock({template: 'h:m:s'});
   clock.start();
+
+
+//SINGLE RESPONSIBILITY PRINCIPLE
+
+//Instead of this
+
+function is_game_over() {
+
+	// game over logic goes here!
+  
+	if (gameOver){
+	  const gameOverDiv = document.createElement('div')
+	  gameOverDiv.classList.add('game-over')
+   gameOverDiv.textContent = `${this.winner} won the game!`
+	  document.body.appendChild(gameOverDiv)
+	}
+  }
+
+  //Extract all the DOM manipulation into it’s own module and use it like so:
+
+  function is_game_over() {
+
+	// game over logic goes here!
+  
+	if (gameOver){
+	  DOMStuff.gameOver(this.winner)
+	}
+  }
+
+
